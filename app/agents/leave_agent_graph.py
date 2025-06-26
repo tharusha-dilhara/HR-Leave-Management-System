@@ -5,6 +5,7 @@ from langchain_core.messages import BaseMessage, ToolMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_groq import ChatGroq
 from langgraph.graph import StateGraph, END
+from langchain_openai import ChatOpenAI
 
 from app.tools import leave_tools
 
@@ -85,7 +86,9 @@ def should_continue(state: AgentState):
         return "continue"
 
 # --- Setup LLM and Prompt ---
-llm = ChatGroq(model="qwen/qwen3-32b", temperature=0, groq_api_key=os.getenv("GROQ_API_KEY"))
+# llm = ChatGroq(model="qwen/qwen3-32b", temperature=0, groq_api_key=os.getenv("GROQ_API_KEY"))
+llm = ChatOpenAI(model="gpt-4o", temperature=0, api_key=os.getenv("OPENAI_API_KEY"))
+
 
 # --- FIX 2: Update the system prompt with instructions for employee_id ---
 system_prompt = """You are an expert HR assistant chatbot for a leave management system.
