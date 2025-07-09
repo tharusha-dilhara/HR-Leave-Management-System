@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "run.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "run.py"
+      }
+    ],
+    "env": {
+      "GROQ_API_KEY": "@groq_api_key",
+      "MONGO_URI": "@mongo_uri",
+      "MONGO_DB_NAME": "hr_system",
+      "SECRET_KEY": "@secret_key"
+    }
+  }
